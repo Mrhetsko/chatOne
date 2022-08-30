@@ -1,0 +1,28 @@
+{% load static %}
+<div class="logo">
+    <a href="{% url 'home' %}"><img width="35px" src="{% static 'images/logo.svg' %}" alt="home-logo"></a>
+</div>
+
+<div class="search">
+    {% if user.is_authenticated %}
+    <form method="GET" action="{% url 'home' %}">
+        <label>
+            <input type="text" name="q" placeholder="Search ...">
+            <ion-icon name="search-outline"></ion-icon>
+        </label>
+    </form>
+    {% endif %}
+
+</div>
+
+<div>
+
+    {% if user.is_authenticated %}
+        <div class="log">
+            <p>Hello {{ user.username }}</p>
+            <small><a href="{% url 'logout-user' %}">Logout</a></small>
+        </div>
+    {% else %}
+        <small><a href="{% url 'login-page' %}">Login</a></small>
+    {% endif %}
+</div>

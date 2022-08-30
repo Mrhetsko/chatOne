@@ -1,0 +1,59 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'style/main.css' %}">
+    <link rel="stylesheet" href="{% static 'style/button_style.css' %}">
+    <title>{%block title%}{%endblock%}</title>
+
+</head>
+<body>
+
+<div class="navbar">
+    {%  include 'navbar_component.html'%}
+</div>
+
+<div class="home-content">
+
+    <div class="sidebar">
+        {% if user.is_authenticated %}
+        {% include 'sidebar_component.html' %}
+        {% endif %}
+    </div>
+
+
+<!--    django flash message-->
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+        <a href="{{ request.META.HTTP_REFERER }}">Try again</a>
+    </ul>
+    {% endif %}
+
+
+    <div class="main" >
+<!--        <div class="content-wrapper">-->
+            {% block content %}
+
+            {% endblock %}
+<!--        </div>-->
+
+
+
+
+    </div>
+
+</div>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script src="{% static 'js/main.js' %}" >
+</script>
+</body>
+</html>

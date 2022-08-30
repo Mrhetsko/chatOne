@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="main-total">
+    <div class="home-main">
+        <div class="top-bar">
+            <div class="card-box">
+                {% include 'base/top_bar_element.html' %}
+            </div>
+        </div>
+
+        <p><a id="a" href="{% url 'create-room' %}"><span>Add Room</span></a></p>
+
+        <div class="room-list">
+            {% for room in rooms %}
+            <div class="room-item">
+                <div id="room-name">
+                    <a href="{% url 'room' room.id%}">
+                        <h4>{{ room.name }}</h4>
+                    </a>
+                </div>
+
+                {% if request.user == room.host %}
+                <div id="room-buttons">
+                    <a href="{% url 'update-room' room.id %}">Edit</a>
+                    <a href="{% url 'delete-room' room.id %}">Delete</a>
+                </div>
+                {% endif %}
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="activity" >
+        {% include 'base/activity.html' %}
+    </div>
+</div>
+{% endblock %}
+
+

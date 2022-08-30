@@ -1,0 +1,23 @@
+
+<div class="toggle">
+    <ion-icon name="list-outline"></ion-icon>
+</div>
+<hr>
+
+<ul>
+    <li id="browse">
+        <a href="{% url 'home' %}">
+            <span class="icon"><ion-icon name="albums-sharp"></ion-icon></span>
+            <span class="title">All topics</span>
+        </a>
+    </li>
+{% for topic in topics %}
+    <li>
+        <a href="{% url 'home' %}?q={{topic.name}}">
+            <span class="icon"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></span>
+            <span class="title">{{ topic.name }}</span>
+        </a>
+    </li>
+<!--    <li><h3><a href="{% url 'home' %}?q={{ topic.name }}">{{ topic.name }}</a></h3></li>-->
+{% endfor %}
+</ul>

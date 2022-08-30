@@ -1,0 +1,97 @@
+{% extends 'main.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+{% block content %}
+<div class="layout" xmlns="http://www.w3.org/1999/html">
+    <form class="form" method="post" action="">
+        {% csrf_token %}
+
+
+        <div class="form_group" >
+
+<!--            деніс відео на 5 годині 3 хвилині-->
+            <label for="room_topic">Topic name</label>
+            <input required type="text" name="topic" list="topic-list">
+                <datalist id="topic-list">
+                    <select id="room_topic">
+                        <option value="Python">Python</option>
+                        <option value="Django">Django</option>
+                    </select>
+                </datalist>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
+
+
+
+<!--<form method="post" action="">-->
+<!--    {% csrf_token %}-->
+<!--    {{ form.as_p }}-->
+<!--    <input type="submit" value="Create Room">-->
+<!--</form>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

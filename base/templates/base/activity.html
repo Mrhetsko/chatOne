@@ -1,0 +1,19 @@
+{% block content %}
+    <h3>Recent Activity</h3>
+
+    {% for message in recent_activity %}
+        <div class="recent-home">
+            <div class="r-name">
+                <span><a href="#">@ {{ message.user.username }}</a> posted:</span>
+            </div>
+
+            <div class="r-msg">
+                <p>"{{ message }}"</p>
+            </div>
+
+
+            <small>{{ message.created|timesince }} ago in <span>{{ message.room }} room</span></small>
+
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="room">
+    <div>
+        <h1>{{ room.name }}</h1>
+    </div>
+    <hr>
+    <div class="room-bio">
+        <div>
+            <h5>owner: @{{ room.host.username }}</h5>
+            <p>{{ room.description }}</p>
+        </div>
+    </div>
+
+    <div class="room-content">
+        <div class="room-message-content">
+
+            {% if request.user.is_authenticated %}
+            <div class="message-input">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <input type="text" name="body" placeholder="write message..." >
+                </form>
+            </div>
+            {% endif %}
+
+
+            <div class="room-messages" >
+                {% for message in room_messages %}
+                <div class="room-message">
+                    <span><a href="#">@ {{ message.user }}</a> :</span>
+                    <br>
+                    <p>{{ message.body }}</p>
+
+                    <br>
+                    <hr>
+                    <p><small>posted {{ message.created|timesince }} ago</small></p>
+                    {% if request.user == message.user %}
+                    <a href="{% url 'delete-message' message.id %}">Delete message</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="participants-list">
+            <h3>Participants</h3>
+            <hr>
+            {% for user in participants %}
+                <div class="participant">
+                    <a href="#">@ {{ user.username }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
